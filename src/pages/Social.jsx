@@ -25,6 +25,14 @@ const Social = () => {
         >
           LinkedIn
         </a>
+         <a
+          href="https://instagram.com/Theluckyjha"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline hover:text-blue-500 transition duration-200"
+        >
+          Instagram
+        </a>
         <a
           href="https://twitter.com/Theluckyjha"
           target="_blank"

@@ -1,3 +1,4 @@
+// ContactForm.jsx
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -21,11 +22,14 @@ const ContactForm = () => {
     const formData = { name, email, phone, subject, message };
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbzQUUN1vczVNkUTMyDL1WycEsUrcyZVq4vkkZUf6A7cn3rb3_apMSvofDhWrxoDbpdV/exec", {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbwGoOauQQH05NvryPNaunUu_CTB90Q_2kJRQnKbNfWpGuftkild8sGdECTmpc7CwqPR5w/exec",
+        {
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
       const result = await response.text();
 
@@ -95,5 +99,9 @@ const ContactForm = () => {
   );
 };
 
+// ✅ Make sure this is at the very end, and ContactForm is defined above.
 export default ContactForm;
+
+
+
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -16,13 +16,16 @@ const Footer = () => {
 
         {/* Social Icons */}
         <div className="flex gap-6 text-xl">
-          <a href="https://github.com/yourusername" target="_blank" rel="noreferrer" className="hover:text-blue-600 dark:hover:text-white">
+          <a href="https://github.com/jhalucky" target="_blank" rel="noreferrer" className="hover:text-blue-600 dark:hover:text-white">
             <FaGithub />
           </a>
-          <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noreferrer" className="hover:text-blue-600 dark:hover:text-white">
+          <a href="https://instagram.com/theluckyjha" target="_blank" rel="noreferrer" className="hover:text-blue-600 dark:hover:text-white">
+            <FaInstagram />
+          </a>
+          <a href="https://linkedin.com/in/theluckyjha" target="_blank" rel="noreferrer" className="hover:text-blue-600 dark:hover:text-white">
             <FaLinkedin />
           </a>
-          <a href="https://twitter.com/yourusername" target="_blank" rel="noreferrer" className="hover:text-blue-600 dark:hover:text-white">
+          <a href="https://twitter.com/Theluckyjha" target="_blank" rel="noreferrer" className="hover:text-blue-600 dark:hover:text-white">
             <FaTwitter />
           </a>
         </div>
