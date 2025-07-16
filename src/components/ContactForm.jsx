@@ -1,16 +1,15 @@
-// ContactForm.jsx
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-const ContactForm = () => {
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+export default function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,89 +17,93 @@ const ContactForm = () => {
     if (!confirmed) return;
 
     setLoading(true);
-
     const formData = { name, email, phone, subject, message };
 
     try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbwGoOauQQH05NvryPNaunUu_CTB90Q_2kJRQnKbNfWpGuftkild8sGdECTmpc7CwqPR5w/exec",
-        {
-          method: "POST",
-          body: JSON.stringify(formData),
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      // 1. Send to Formspree
+      const formspreeRes = await fetch("https://formspree.io/f/mvgqobkn", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-      const result = await response.text();
+      // 2. Send to Google Sheets
+      await fetch("https://script.google.com/macros/s/AKfycbyY9Sn14A4fyUg0wU2qCB8ES7A3hvcAnTfbGiJLSshhHfdJV6PDeWJar-pGBJfRWD45zw/exec", {
+        method: "POST",
+        body: JSON.stringify(formData),
+      });
 
-      if (result === "Success") {
+      if (formspreeRes.ok) {
         toast.success("Message sent!");
+        setName("");
+        setEmail("");
+        setPhone("");
+        setSubject("");
+        setMessage("");
         setTimeout(() => navigate("/thank-you"), 1000);
       } else {
         toast.error("Failed to send message.");
       }
     } catch (error) {
-      toast.error("Something went wrong: " + error.message);
+      toast.error("Something went wrong.");
+      console.error(error);
     }
 
     setLoading(false);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 max-w-xl mx-auto">
       <input
         type="text"
-        placeholder="Name"
-        className="w-full p-3 rounded border dark:bg-neutral-800 dark:text-white"
+        placeholder="Your Name"
+        className="w-full p-2 border rounded"
         value={name}
         onChange={(e) => setName(e.target.value)}
         required
       />
       <input
         type="email"
-        placeholder="Email"
-        className="w-full p-3 rounded border dark:bg-neutral-800 dark:text-white"
+        placeholder="Your Email"
+        className="w-full p-2 border rounded"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
       />
       <input
         type="tel"
-        placeholder="Phone"
-        className="w-full p-3 rounded border dark:bg-neutral-800 dark:text-white"
+        placeholder="Phone Number"
+        className="w-full p-2 border rounded"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
-        required
       />
       <input
         type="text"
         placeholder="Subject"
-        className="w-full p-3 rounded border dark:bg-neutral-800 dark:text-white"
+        className="w-full p-2 border rounded"
         value={subject}
         onChange={(e) => setSubject(e.target.value)}
         required
       />
       <textarea
-        placeholder="Message"
-        className="w-full p-3 rounded border dark:bg-neutral-800 dark:text-white"
+        placeholder="Your Message"
+        className="w-full p-2 border rounded"
         rows="5"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         required
-      />
+      ></textarea>
       <button
         type="submit"
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded transition-all"
         disabled={loading}
+        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
       >
         {loading ? "Sending..." : "Send Message"}
       </button>
     </form>
   );
-};
+}
 
-// ✅ Make sure this is at the very end, and ContactForm is defined above.
-export default ContactForm;
 
 
 

@@ -9,12 +9,14 @@ import ScrollToTop from "./components/ScrollToTop";
 import Social from "./pages/Social";
 import ThemeToggle from "./components/ThemeToggle";
 import ThankYou from "./pages/Thankyou";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-white dark:bg-neutral-900 text-black dark:text-white transition-all duration-300">
         <ScrollToTop />
+        <Toaster position="top-center" reverseOrder={false} />
         <div className="flex justify-end p-4">
           <ThemeToggle />
         </div>
