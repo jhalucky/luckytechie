@@ -55,6 +55,14 @@ function Projects() {
               >
                 View Live →
               </a>
+              <a
+  href="https://github.com/jhalucky/luckytechie"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block mt-4 text-gray-600 dark:text-gray-300 hover:underline"
+>
+  View Code →
+</a>
             </div>
           </motion.div>
         ))}
