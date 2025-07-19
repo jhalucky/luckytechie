@@ -50,7 +50,7 @@ function Projects() {
               </div>
               <div className="flex items-center">
                 <a
-                  href="https://luckytechie.vercel.app/"
+                  href="https://jhalucky.github.io/coca-cola-landingpage/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block mt-4 text-red-600 hover:underline"
