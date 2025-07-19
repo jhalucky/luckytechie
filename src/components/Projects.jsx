@@ -6,8 +6,9 @@ const projects = [
     title: "Coca-Cola 3D Landing Page",
     description:
       "A visually stunning Coca-Cola website with 3D rotating cans, dynamic lighting, and smooth scroll transitions.",
-    image: "coca-cola-landingpage.png", // Put this image in /public/images/
+    image: "coca-cola-landingpage.png", // Ensure this is inside /public/
     link: "https://jhalucky.github.io/coca-cola-landingpage/",
+    repo: "https://github.com/jhalucky/coca-cola-landingpage", // Updated to correct repo
     tags: ["React", "Three.js", "Tailwind", "Framer Motion"],
   },
 ];
@@ -47,22 +48,24 @@ function Projects() {
                   </span>
                 ))}
               </div>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-4 text-red-600 hover:underline"
-              >
-                View Live →
-              </a>
-              <a
-  href="https://github.com/jhalucky/luckytechie"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="inline-block mt-4 text-gray-600 dark:text-gray-300 hover:underline"
->
-  View Code →
-</a>
+              <div className="flex items-center">
+                <a
+                  href="https://luckytechie.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-4 text-red-600 hover:underline"
+                >
+                  View Live →
+                </a>
+                <a
+                  href="https://github.com/jhalucky/luckytechie/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-4 ml-4 text-gray-600 dark:text-gray-300 hover:underline"
+                >
+                  View Code →
+                </a>
+              </div>
             </div>
           </motion.div>
         ))}
@@ -72,4 +75,5 @@ function Projects() {
 }
 
 export default Projects;
+
 
