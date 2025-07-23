@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { Analytics } from "@vercel/analytics/react"
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./components/Projects";
@@ -29,6 +30,7 @@ function App() {
           <Route path="/thank-you" element={<ThankYou />} />
         </Routes>
         <Footer />
+        <Analytics />
       </div>
     </ThemeProvider>
   );
